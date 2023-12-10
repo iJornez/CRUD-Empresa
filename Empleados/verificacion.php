@@ -14,7 +14,10 @@ $verificado = $sentencia->fetch();
 
 
 if ($verificado) {
-    header("location:dashboard.php");
+    $_SESSION['usuario'] = $correo;
+    header("location:logeado.php");
+    exit();
 } else {
-    header("location:index.php");
+    header("location:index.php?error=1");
+    exit();
 }
