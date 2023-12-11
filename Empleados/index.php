@@ -1,13 +1,7 @@
 <?php
-session_start();
-if (isset($_SESSION['usuario'])) {
-    $usuario = $_SESSION['usuario'];
-    $mostrar_botones = false;
-} else {
-    $mostrar_botones = true;
-}
-?>
+require_once('empleados.php') ;
 
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -35,44 +29,14 @@ if (isset($_SESSION['usuario'])) {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link active dropdown-toggle" href="navbarDropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Productos
-                    </a>
-
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-
-                </li>
-
             </ul>
-
-            <?php if ($mostrar_botones) { ?>
-                <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar sesión</button>
-                <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
-            <?php } else { ?>
-                <div class="user-profile">
-                    <i class="fas fa-user"></i>
-                    <p>Bienvenido, <?php echo $usuario; ?></p>
-                    <button type="button" class="btn btn-dark" onclick="cerrarSesion()">Cerrar sesión</button>
-                </div>
-            <?php } ?>
+            <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar sesión</button>
+            <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
+            <a href="../Admin/admin.php" class="btn btn-light ms-2">Admin</a>
         </div>
 
     </nav>
-    <?php include '../Vistas/contenido.php' ?>
+    <?php include_once('../Vistas/contenido.php') ?>
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -122,18 +86,15 @@ if (isset($_SESSION['usuario'])) {
                 <div class="modal-body">
 
                     <form>
-
+                        <?php require_once('../Empleados/registro.php') ?>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Registrarse</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    <?php include '../Vistas/footer.php' ?>
-    
+
+    <?php include_once('../Vistas/footer.php') ?>
+
 
 
 

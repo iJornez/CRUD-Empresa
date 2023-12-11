@@ -18,6 +18,44 @@
 .container {
     margin-top: 0;
 }
+.center-buttons {
+    text-align: center;
+}
+
+input[type="email"],
+input[type="password"] {
+    text-align: center;
+}
+
+.center-input {
+    margin: 0 auto;
+}
+.card {
+    width: 70%; 
+    max-width: 400px; 
+    margin: 0 auto; 
+    background-color: #000000; 
+    color: #ffffff; 
+    border: 1px solid #ffffff; 
+}
+
+
+.card-body {
+    text-align: center;
+}
+
+.container {
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.row {
+    width: 60%;
+    font-family: American Typewriter;
+    margin-left: 5%;
+    border: #424949 2px solid;
+    border-radius: 5px;
+}
 
 .col-md-2 {
     margin-bottom: 8px;

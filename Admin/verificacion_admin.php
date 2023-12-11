@@ -15,7 +15,7 @@ $verificado = $sentencia->fetch();
 
 
 if ($verificado) {
-    header("location:logeado.php");
+    header("location:../Empleados/dashboard.php");
 } else {
-    header("location:index.php?error=1");
+    header("location:admin.php?error=1");
 }

@@ -1,5 +1,5 @@
 <?php
-include("../Conexion/conexion.php");
+require_once("../Conexion/conexion.php");
 
 $txtid = isset($_POST['txtid']) ? $_POST['txtid'] : "";
 $txtnombres = isset($_POST['txtnombres']) ? $_POST['txtnombres'] : "";
@@ -19,19 +19,35 @@ switch ($accion) {
         $sentencia->bindParam(':apellido_p', $txtapellidop);
         $sentencia->bindParam(':apellido_m', $txtapellidom);
         $sentencia->bindParam(':correo', $txtcorreo);
-        $fecha = new DateTime();
-        $nombre_archivo = $txtfoto != "" ? $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'] : "imagen.png";
-        $tmpfoto = $_FILES['txtfoto']['tmp_name'];
-        if ($tmpfoto != "") {
-            move_uploaded_file($tmpfoto, "../Imagenes/" . $nombre_archivo);
+        $nombre_archivo = "";
+        if (isset($_FILES['txtfoto']['name']) && $_FILES['txtfoto']['tmp_name'] != "") {
+            $fecha = new DateTime();
+            $nombre_archivo = $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'];
+            move_uploaded_file($_FILES['txtfoto']['tmp_name'], "../Imagenes/" . $nombre_archivo);
         }
+        
         $sentencia->bindParam(':foto', $nombre_archivo);
-        $sentencia->execute();
-        if ($sentencia) {
-            echo "Registro guardado!";
-        } else {
-            echo "Error al registrar!";
+
+        try {
+            $sentencia->execute();
+            header('../Admin/admin.php');
+        } catch (PDOException $e) {
+            echo "Error al registrar: " . $e->getMessage();
         }
+        break;
+        // $fecha = new DateTime();
+        // $nombre_archivo = $txtfoto != "" ? $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'] : "imagen.png";
+        // $tmpfoto = $_FILES['txtfoto']['tmp_name'];
+        // if ($tmpfoto != "") {
+        //     move_uploaded_file($tmpfoto, "../Imagenes/" . $nombre_archivo);
+        // }
+        // $sentencia->bindParam(':foto', $nombre_archivo);
+        // $sentencia->execute();
+        // if ($sentencia) {
+        //     echo "Registro guardado!";
+        // } else {
+        //     echo "Error al registrar!";
+        // }
         break;
 
     case 'btnmodificar':

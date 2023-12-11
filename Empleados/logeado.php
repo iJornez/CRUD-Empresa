@@ -1,13 +1,3 @@
-<?php
-session_start();
-if (isset($_SESSION['usuario'])) {
-    $usuario = $_SESSION['usuario'];
-    $mostrar_botones = false;
-} else {
-    $mostrar_botones = true;
-}
-?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -39,43 +29,24 @@ if (isset($_SESSION['usuario'])) {
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
 
-                    <li class="nav-item dropdown">
-
-                        <a class="nav-link active dropdown-toggle" href="navbarDropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Productos
-                        </a>
-
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-
-                    </li>
-
                 </ul>
                 <div class="d-flex align-items-center">
                     <span class=" m-2 me-5 text-light">
                         <i class="fas fa-user"></i>
                         <p class="mb-0 me-3">Bienvenido</p>
                     </span>
-                    <button type="button" class="btn btn-light" onclick="cerrarSesion()">Cerrar sesión</button>
+                    <a href="logout.php" class="btn btn-light" >Cerrar sesión</a>
                 </div>
-               
+
 
             </div>
         </div>
     </nav>
-    <?php include '../Vistas/contenido.php' ?>
-    <?php include '../Vistas/footer.php' ?>
+    <?php include_once('../Vistas/contenido.php') ?>
+    <?php include_once('../Vistas/footer.php') ?>
 
     <script>
-        function cerrarSesion() {
-            window.location.href = 'logout.php';
-        }
+
     </script>
 </body>
 
