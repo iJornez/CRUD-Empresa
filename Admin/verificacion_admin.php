@@ -1,6 +1,7 @@
 <?php
 
 require_once("../Conexion/conexion.php");
+session_start();
 
 
 $correo = (isset($_POST['email'])) ? $_POST['email'] : "";
