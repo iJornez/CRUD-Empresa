@@ -47,7 +47,7 @@ session_start();
                 </div>
                 <div class="modal-body">
 
-                    <form action="verificacion.php" method="post">
+                    <form action="logeado.php" method="post">
 
                         <div class="mb-3">
                             <label for="email">

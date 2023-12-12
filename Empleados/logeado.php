@@ -1,4 +1,14 @@
+<?php
 
+include_once('verificacion.php');
+session_start();
+$usuario = $_SESSION['correo'];
+
+if (!isset($usuario)) {
+    header('location: index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
