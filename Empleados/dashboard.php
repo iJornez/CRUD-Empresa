@@ -1,5 +1,11 @@
 <?php
 require_once('empleados.php');
+session_start();
+$usuario = $_SESSION['admin'];
+if (!isset($usuario)) {
+    header('location:../Admin/admin.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>

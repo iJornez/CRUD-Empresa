@@ -1,6 +1,12 @@
 <?php
 
 require_once("../Conexion/conexion.php");
+session_start();
+$usuario=$_SESSION['admin'];
+if (!isset($usuario)) {
+   header('location:../Admin/admin.php');
+   exit;
+}
 
 
 $correo = (isset($_POST['email'])) ? $_POST['email'] : "";
