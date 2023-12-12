@@ -2,11 +2,7 @@
 
 require_once("../Conexion/conexion.php");
 session_start();
-$usuario=$_SESSION['admin'];
-if (!isset($usuario)) {
-   header('location:../Admin/admin.php');
-   exit;
-}
+
 
 
 $correo = (isset($_POST['email'])) ? $_POST['email'] : "";
@@ -21,6 +17,7 @@ $verificado = $sentencia->fetch();
 
 
 if ($verificado) {
+    $_SESSION['correo']=$correo;
     header("location:logeado.php");
 } else {
     header("location:index.php?error=1");

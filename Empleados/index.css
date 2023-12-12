@@ -49,14 +49,6 @@ input[type="password"] {
     margin-bottom: 60px;
 }
 
-.row {
-    width: 60%;
-    font-family: American Typewriter;
-    margin-left: 5%;
-    border: #424949 2px solid;
-    border-radius: 5px;
-}
-
 .col-md-2 {
     margin-bottom: 8px;
     display: flex;
