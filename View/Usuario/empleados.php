@@ -1,5 +1,5 @@
 <?php
-require_once("../Conexion/conexion.php");
+require_once("../../Config/conexion.php");
 
 $txtid = isset($_POST['txtid']) ? $_POST['txtid'] : "";
 $txtnombres = isset($_POST['txtnombres']) ? $_POST['txtnombres'] : "";
@@ -23,14 +23,14 @@ switch ($accion) {
         if (isset($_FILES['txtfoto']['name']) && $_FILES['txtfoto']['tmp_name'] != "") {
             $fecha = new DateTime();
             $nombre_archivo = $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'];
-            move_uploaded_file($_FILES['txtfoto']['tmp_name'], "../Imagenes/" . $nombre_archivo);
+            move_uploaded_file($_FILES['txtfoto']['tmp_name'], "../../Assets/Images/" . $nombre_archivo);
         }
         
         $sentencia->bindParam(':foto', $nombre_archivo);
 
         try {
             $sentencia->execute();
-            header('../Admin/admin.php');
+            header('ListarUsuarios.php');
         } catch (PDOException $e) {
             echo "Error al registrar: " . $e->getMessage();
         }
@@ -67,14 +67,14 @@ switch ($accion) {
         $nombre_archivo = $txtfoto != "" ? $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'] : "imagen.png";
         $tmpfoto = $_FILES['txtfoto']['tmp_name'];
         if ($tmpfoto != "") {
-            move_uploaded_file($tmpfoto, "../Imagenes/" . $nombre_archivo);
+            move_uploaded_file($tmpfoto, "../../Assets/Images/" . $nombre_archivo);
             $sentencia = $pdo->prepare("SELECT foto FROM empleados WHERE id=:id");
             $sentencia->bindParam(":id", $txtid);
             $sentencia->execute();
             $empleado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if (isset($_FILES["txtfoto"])) {
-                if (file_exists("../Imagenes/" . $empleado["foto"])) {
-                    unlink("../Imagenes/" . $empleado["foto"]);
+                if (file_exists("../../Assets/Images/" . $empleado["foto"])) {
+                    unlink("../../Assets/Images/" . $empleado["foto"]);
                 }
             }
             $sentencia = $pdo->prepare("UPDATE empleados SET foto=:foto WHERE id=:id");
@@ -82,7 +82,7 @@ switch ($accion) {
             $sentencia->bindParam(':id', $txtid);
             $sentencia->execute();
         }
-        header('location:dashboard.php');
+        header('location:ListarUsuarios.php');
         break;
 
     case 'seleccionar':
@@ -108,15 +108,15 @@ switch ($accion) {
         $empleado = $sentencia->fetch(PDO::FETCH_ASSOC);
         print_r($empleado);
         if (isset($_POST["txtfoto"])) {
-            if (file_exists("../Imagenes/" . $empleado["foto"])) {
-                unlink("../Imagenes/" . $empleado["foto"]);
+            if (file_exists("../../Assets/Images/" . $empleado["foto"])) {
+                unlink("../../Assets/Images/" . $empleado["foto"]);
             }
         }
         $sentencia = $pdo->prepare("DELETE FROM empleados WHERE id=:id");
         $sentencia->bindParam(':id', $txtid);
         $sentencia->execute();
         if ($sentencia) {
-            header('location: index.php');
+            header('location: ListarUsuarios.php');
         } else {
             echo "Error al eliminar!";
         }

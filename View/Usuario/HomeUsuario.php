@@ -1,6 +1,7 @@
 <?php
-require_once('empleados.php') ;
+require_once('empleados.php');
 session_start();
+
 
 ?>
 
@@ -12,7 +13,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../Assets/Css/LoginUsuario.css">
+    <link rel="stylesheet" href="../../Assets/Css/Carrito.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="../../Assets/Js/Carrito.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -22,7 +26,7 @@ session_start();
 <body>
     <nav style="background-color: #000000;" class=" navbar navbar-expand-lg navbar-dark">
 
-        <a class="navbar-brand" href="index.php"><img src="../Imagenes/Logo.jpg" height="50px" width="50px" alt=""></a>
+        <a class="navbar-brand" href="HomeUsuario.php"><img src="../../Assets/Images/Logo.jpg" height="50px" width="50px" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,11 +37,13 @@ session_start();
             </ul>
             <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#loginModal">Iniciar sesión</button>
             <button class="btn btn-light ms-2" data-bs-toggle="modal" data-bs-target="#registerModal">Registrarse</button>
-            <a href="../Admin/admin.php" class="btn btn-light ms-2">Admin</a>
+            <a href="../Admin/LoginAdmin.php" class="btn btn-light ms-2">Admin</a>
         </div>
 
     </nav>
-    <?php include_once('../Vistas/contenido.php') ?>
+
+    <?php include_once('../../Partials/contenido.php') ?>
+
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -47,7 +53,7 @@ session_start();
                 </div>
                 <div class="modal-body">
 
-                    <form action="logeado.php" method="post">
+                    <form action="VerificacionUsuario.php" method="post">
 
                         <div class="mb-3">
                             <label for="email">
@@ -87,14 +93,14 @@ session_start();
                 <div class="modal-body">
 
                     <form>
-                        <?php require_once('../Empleados/registro.php') ?>
+                        <?php require_once('RegistroUsuario.php') ?>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <?php include_once('../Vistas/footer.php') ?>
+    <?php include_once('../../Partials/footer.php') ?>
 
 
 
@@ -106,6 +112,20 @@ session_start();
                 localStorage.setItem('modalShown', 'true');
             }
         });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Comprobar si existe un parámetro en la URL indicando el éxito del inicio de sesión
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('login') && params.get('login') === 'success') {
+            // Mostrar una alerta personalizada de SweetAlert2
+            Swal.fire({
+                icon: 'success',
+                title: '¡Inicio de sesión exitoso!',
+                showConfirmButton: false,
+                timer: 1500 // Ocultar automáticamente después de 1.5 segundos
+            });
+        }
     </script>
 </body>
 

@@ -1,9 +1,9 @@
 <?php
-require_once('empleados.php');
+require_once('../Usuario/empleados.php');
 session_start();
-$usuario = $_SESSION['admin'];
+$usuario = $_SESSION['correo'];
 if (!isset($usuario)) {
-    header('location:../Admin/admin.php');
+    header('location: LoginAdmin.php');
     exit;
 }
 ?>
@@ -17,7 +17,7 @@ if (!isset($usuario)) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="../../Assets/Css/LoginUsuario.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>CRUD de Empleados MYSQL Y PHP</title>
@@ -164,7 +164,7 @@ if (!isset($usuario)) {
         </center>
     </div>
 
-    <?php include_once('../Vistas/footer.php') ?>
+    <?php include_once('../../Partials/footer.php') ?>
 
 
 
