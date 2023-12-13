@@ -1,3 +1,4 @@
+
 //variables
 let allContainerCart = document.querySelector('.products');
 let containerBuyCart = document.querySelector('.card-items');

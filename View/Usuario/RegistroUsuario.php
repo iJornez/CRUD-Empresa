@@ -33,7 +33,7 @@
         <label for="" class="blockquote">FOTO</label>
         <?php if ($txtfoto != "") { ?>
             <br>
-            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../Imagenes/<?php echo $txtfoto; ?>">
+            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../../Assets/Images/<?php echo $txtfoto; ?>">
             <br>
             <br>
         <?php } ?>

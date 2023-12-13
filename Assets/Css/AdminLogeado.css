@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -6,39 +6,82 @@
     box-sizing: border-box;
 }
 
-nav{
+nav {
     background: #2fcdcd;
     height: 80px;
     width: 100%;
 }
-.enlace{
+
+
+h1.text-center {
+    text-align: center;
+    margin-top: 20px;
+}
+.enlace {
     position: absolute;
     padding: 20px 50px;
 }
-.logo{
-    height: 50px;
+
+.logo {
+    height: 46px;
 }
-nav ul{
+
+nav ul {
     float: right;
     margin-right: 20px;
 }
-nav ul li{
+
+nav ul li {
     display: inline-block;
     line-height: 80px;
     margin: 0 5px;
 }
-nav ul li a{
+
+nav ul li a {
     color: #fff;
     font-size: 18px;
     padding: 7px 13px;
     border-radius: 3px;
     text-transform: uppercase;
+    text-decoration: none;
 }
-li a.active, li a:hover{
+
+li a.active,
+li a:hover {
     background: #000090;
     transition: .5s;
 }
-.checkbtn{
+
+nav ul li ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    min-width: 140px;
+    background-color: #ffffff;
+    z-index: 1;
+    padding: 10px 0;
+}
+
+nav ul li:hover ul.dropdown-menu {
+    display: block;
+    margin: 0;
+}
+
+nav ul li ul.dropdown-menu li {
+    display: block;
+    padding: 10px;
+}
+
+nav ul li ul.dropdown-menu li a {
+    display: block;
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+nav ul li ul.dropdown-menu li a:hover {
+    background-color: #ffffff;
+}
+
+.checkbtn {
     font-size: 30px;
     color: #fff;
     float: right;
@@ -47,30 +90,34 @@ li a.active, li a:hover{
     cursor: pointer;
     display: none;
 }
-#check{
+
+#check {
     display: none;
 }
-section{
+
+section {
     background: url(../Images/fondo.jpg) no-repeat;
     background-size: cover;
     background-position: center center;
     height: calc(100vh - 80px);
 }
 
-@media (max-width: 952px){
-    .enlace{
+@media (max-width: 952px) {
+    .enlace {
         padding-left: 20px;
     }
-    nav ul li a{
+
+    nav ul li a {
         font-size: 16px;
     }
 }
 
-@media (max-width: 858px){
-    .checkbtn{
+@media (max-width: 858px) {
+    .checkbtn {
         display: block;
     }
-    ul{
+
+    ul {
         position: fixed;
         width: 100%;
         height: 100vh;
@@ -80,19 +127,24 @@ section{
         text-align: center;
         transition: all .5s;
     }
-    nav ul li{
+
+    nav ul li {
         display: block;
         margin: 50px 0;
         line-height: 30px;
     }
-    nav ul li a{
+
+    nav ul li a {
         font-size: 20px;
     }
-    li a:hover, li a.active{
+
+    li a:hover,
+    li a.active {
         background: none;
         color: red;
     }
-    #check:checked ~ ul{
-        left:0;
+
+    #check:checked~ul {
+        left: 0;
     }
 }

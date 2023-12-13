@@ -1,6 +1,7 @@
 <?php
 require_once('empleados.php');
 session_start();
+$userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
 
 
 ?>
@@ -12,13 +13,13 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../../Assets/Css/LoginUsuario.css">
     <link rel="stylesheet" href="../../Assets/Css/Carrito.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="../../Assets/Js/Carrito.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <title>PAGINA-CRUD</title>
 </head>
@@ -115,17 +116,23 @@ session_start();
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // Comprobar si existe un parámetro en la URL indicando el éxito del inicio de sesión
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('login') && params.get('login') === 'success') {
-            // Mostrar una alerta personalizada de SweetAlert2
-            Swal.fire({
-                icon: 'success',
-                title: '¡Inicio de sesión exitoso!',
-                showConfirmButton: false,
-                timer: 1500 // Ocultar automáticamente después de 1.5 segundos
+        const userLoggedIn = <?php echo $userLoggedIn; ?>;
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                if (!userLoggedIn) {
+                    $('#loginModal').modal('show');
+                } else {
+                    addProductToCart();
+                }
             });
-        }
+        });
+    });
     </script>
 </body>
 
