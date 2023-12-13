@@ -118,21 +118,61 @@ $userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
     <script>
         const userLoggedIn = <?php echo $userLoggedIn; ?>;
 
-        document.addEventListener('DOMContentLoaded', function () {
-        const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.btn-add-cart');
 
-        addToCartButtons.forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
 
-                if (!userLoggedIn) {
-                    $('#loginModal').modal('show');
-                } else {
-                    addProductToCart();
-                }
+                    if (!userLoggedIn) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Primer inicie sesion o registrese!",
+                            showCancelButton: true,
+                            confirmButtonText: 'Iniciar sesión',
+                            cancelButtonText: 'Registrarse',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonColor: '#d33',
+                            reverseButtons: true,
+                            didOpen: () => {
+                                const cancelButton = Swal.getCancelButton();
+                                cancelButton.addEventListener('click', () => {
+                                    $('#registerModal').modal('show');
+                                });
+                            }
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $('#loginModal').modal('show');
+                            } else if (result.dismiss === Swal.DismissReason.close) {
+                                $('#registerModal').modal('show');
+                            }
+                        });
+
+
+                    } else {
+                        addProductToCart();
+                    }
+
+                });
             });
+            document.getElementById('buyButton').addEventListener('click', function() {
+                // Vaciar el carrito
+                buyThings = [];
+                totalCard = 0;
+                countProduct = 0;
+                loadHtml();
+
+                // Mostrar el Sweet Alert de compra realizada
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Compra realizada!',
+                    text: 'Gracias por su compra.',
+                });
+            });
+
         });
-    });
     </script>
 </body>
 

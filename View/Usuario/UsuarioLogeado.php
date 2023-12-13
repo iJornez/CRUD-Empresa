@@ -62,12 +62,39 @@ if (!isset($usuario)) {
             <div class="card-items">
             </div>
             <h2>Total: $<strong class="price-total">0</strong></h2>
+            <button class="btn btn-primary mt-3" id="buyButton">Comprar</button>
         </div>
     </div>
     <?php include_once('../../Partials/contenido.php') ?>
     <?php include_once('../../Partials/footer.php') ?>
 
     <script src="../../Assets/Js/Carrito.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+
+            document.getElementById('buyButton').addEventListener('click', function() {
+                if (buyThings.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '¡Carrito vacío!',
+                        text: 'Agrega productos al carrito antes de comprar.',
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Compra realizada!',
+                        text: 'Gracias por su compra.',
+                    });
+                }
+                buyThings = [];
+                totalCard = 0;
+                countProduct = 0;
+                loadHtml();
+            });
+        });
+    </script>
 </body>
 
 </html>
