@@ -1,26 +1,25 @@
 <?php
-require_once('../Usuario/empleados.php');
+require_once('AccionesProductos.php');
 session_start();
 $correo = $_SESSION['correo'];
+
 if (!isset($correo)) {
     header('location: LoginAdmin.php');
     exit;
 }
 ?>
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../../Assets/Css/AdminLogeado.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>CRUD de Empleados MYSQL Y PHP</title>
+    <title>Document</title>
 </head>
 
 <body>
@@ -35,7 +34,7 @@ if (!isset($correo)) {
         <ul>
             <li><a class="active" href="AdminLogeado.php">Home</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle">
+                <a class="dropdown-toggle">
                     Opciones
                 </a>
                 <ul class="dropdown-menu">
@@ -48,16 +47,11 @@ if (!isset($correo)) {
 
         </ul>
     </nav>
-
-
-
-
-
     <section>
         <div class="container">
             <center>
 
-                <h1 class="text-center">Lista de Usuarios</h1><br>
+                <h1 class="text-center">Lista de Productos</h1><br>
 
                 <div class="buscar">
                     <form action="" method="post">
@@ -76,36 +70,25 @@ if (!isset($correo)) {
 
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Clientes</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Productos</h1>
                                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                     </div>
 
                                     <div class="form_group col-md-12">
-                                        <label for="" class="blockquote">IDENTIFICACION</label>
-                                        <input type="number" class="form-control" name="txtid" id="txtid" value="<?php echo "$txtid"; ?>" id="id" require=""><br>
+                                        <label for="" class="blockquote">ID</label>
+                                        <input type="number" class="form-control" name="txtid" id="txtid" value="<?php echo "$txtid"; ?>" id="id" require="" disabled><br>
                                     </div>
 
                                     <div class="form_group col-md-12">
-                                        <label for="" class="blockquote">NOMBRES</label>
-                                        <input type="text" class="form-control" name="txtnombres" id="txtnombres" value="<?php echo "$txtnombres"; ?>" require=""><br>
+                                        <label for="" class="blockquote">NOMBRE</label>
+                                        <input type="text" class="form-control" name="txtnombre" id="txtnombre" value="<?php echo "$txtnombre"; ?>" require=""><br>
                                     </div>
 
                                     <div class="form_group col-md-12">
-                                        <label for="" class="blockquote">PRIMER APELLIDO</label>
-                                        <input type="text" class="form-control" name="txtapellidop" id="txtapellidop" value="<?php echo "$txtapellidop"; ?>" require=""><br>
+                                        <label for="" class="blockquote">Precio</label>
+                                        <input type="text" class="form-control" name="txtprecio" id="txtprecio" value="<?php echo "$txtprecio"; ?>" require=""><br>
                                     </div>
 
-                                    <div class="form_group col-md-12">
-                                        <label for="" class="blockquote">SEGUNDO APELLIDO</label>
-                                        <input type="text" class="form-control" name="txtapellidom" id="txtapellidom" value="<?php echo "$txtapellidom"; ?>" require=""><br>
-                                    </div>
-                                    <br>
-
-                                    <div class="form_group col-md-12">
-                                        <label for="" class="blockquote">CORREO</label>
-                                        <input type="text" class="form-control" name="txtcorreo" id="txtcorreo" value="<?php echo "$txtcorreo"; ?>" require=""><br>
-                                    </div>
-                                    <br>
 
                                     <div class="form_group col-md-12">
                                         <label for="" class="blockquote">FOTO</label>
@@ -133,29 +116,30 @@ if (!isset($correo)) {
                     <table class="table table-bordered table-hover">
                         <thead class="table-light">
                             <tr>
+                                <th scope="col" class="text-center">Id</th>
                                 <th scope="col" class="text-center">Foto</th>
-                                <th scope="col" class="text-center">Nombre completo</th>
-                                <th scope="col" class="text-center">Correo</th>
+                                <th scope="col" class="text-center">Nombre</th>
+                                <th scope="col" class="text-center">Precio</th>
                                 <th scope="col" class="text-center">Acciones</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody class="table-light">
-                            <?php foreach ($listaempleados as $empleado) { ?>
+                            <?php foreach ($listproductos as $producto) { ?>
                                 <tr>
-                                    <td class="text-center"><img class="img-thumbnail" width="30px" src="../../Assets/Images/<?php echo $empleado['foto']; ?>"></td>
-                                    <td class="text-center"><?php echo $empleado['nombres']; ?> <?php echo $empleado['apellido_p']; ?> <?php echo $empleado['apellido_m']; ?></td>
-                                    <td class="text-center"><?php echo $empleado['correo']; ?></td>
+                                    <td class="text-center"><?php echo $producto['id']; ?></td>
+                                    <td class="text-center"><img class="img-thumbnail" width="30px" src="../../Assets/Images/<?php echo $producto['foto']; ?>"></td>
+                                    <td class="text-center"><?php echo $producto['nombre']; ?></td>
+                                    <td class="text-center"><?php echo $producto['precio']; ?></td>
 
                                     <form action="" method="post">
-                                        <input type="hidden" name="txtid" value="<?php echo $empleado['id']; ?>">
-                                        <!-- <input type="hidden" name="txtnombres" value="<?php echo $empleado['nombres']; ?>">
-                        <input type="hidden" name="txtapellidop" value="<?php echo $empleado['apellido_p']; ?>">
-                        <input type="hidden" name="txtapellidom" value="<?php echo $empleado['apellido_m']; ?>">
-                        <input type="hidden" name="txtcorreo" value="<?php echo $empleado['correo']; ?>">
-                        <input type="hidden" name="txtfoto" value="<?php echo $empleado['foto']; ?>">  -->
+                                        <input type="hidden" name="txtid" value="<?php echo $producto['id']; ?>">
+                                        <!-- <input type="hidden" name="txtfoto" value="<?php echo $$producto['foto']; ?>">
+                                        <input type="hidden" name="txtnombre" value="<?php echo $producto['nombre']; ?>">
+                                        <input type="hidden" name="txtprecio" value="<?php echo $producto['precio']; ?>"> -->
+                                        
                                         <td class="text-center"><input class="btn btn-primary btn-sm me-3" type="submit" name="accion" value="seleccionar"><button type="submit" name="accion" class="btn btn-danger btn-sm me-3" value="btneliminar">Eliminar</button></td>
-                            
+
                                     </form>
 
                                 </tr>
@@ -165,7 +149,7 @@ if (!isset($correo)) {
                 </div>
 
             </center>
-            
+
         </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
@@ -176,6 +160,7 @@ if (!isset($correo)) {
             <?php } ?>
         });
     </script>
+    </section>
 </body>
 
 </html>

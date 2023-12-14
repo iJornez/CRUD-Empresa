@@ -18,6 +18,7 @@ $verificado = $sentencia->fetch();
 
 if ($verificado) {
     $_SESSION['correo']=$correo;
+    $_SESSION['bienvenida']="Bienvenido!";
     header("location:UsuarioLogeado.php");
     
 } else {

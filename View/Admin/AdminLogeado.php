@@ -1,9 +1,9 @@
 <?php
 include_once('../Usuario/empleados.php');
+error_reporting(E_ALL);
 session_start();
-$usuario = $_SESSION['correo'];
-
-if (!isset($usuario)) {
+$correo = $_SESSION['correo'];
+if (!isset($correo)) {
     header('location: LoginAdmin.php');
     exit;
 }
@@ -21,7 +21,6 @@ if (!isset($usuario)) {
 </head>
 
 <body>
-    <p class='welcome-text'>¡Bienvenido! Gracias por iniciar sesión.</p>
     <nav>
         <input type="checkbox" id="check">
         <label for="check" class="checkbtn">
@@ -38,10 +37,10 @@ if (!isset($usuario)) {
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="ListarUsuarios.php">Usuarios</a></li>
-                    <li><a href="#">Productos</a></li>
+                    <li><a href="ProductosCrear.php">Productos</a></li>
                 </ul>
             </li>
-            <li><a href="VerificacionAdmin.php">Cerrar Sesion</a></li>
+            <li><a href="LogoutAdmin.php">Cerrar Sesion</a></li>
 
 
         </ul>

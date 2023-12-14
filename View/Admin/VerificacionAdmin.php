@@ -19,5 +19,5 @@ if ($verificado) {
     $_SESSION['correo']=$correo;
     header("location:AdminLogeado.php");
 } else {
-    header("location:LoginAdmin.php?error=1");
+    header("location:LoginAdmin.php");
 }

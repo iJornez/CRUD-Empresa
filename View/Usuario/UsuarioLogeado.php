@@ -93,6 +93,14 @@ if (!isset($usuario)) {
                 countProduct = 0;
                 loadHtml();
             });
+            <?php if (isset($_SESSION['bienvenida'])) : ?>
+                Swal.fire({
+                    icon: 'info',
+                    title: '<?php echo $_SESSION['bienvenida']; ?>',
+                    text: '¡Esperamos que disfrutes tu experiencia de compra!',
+                });
+                <?php unset($_SESSION['bienvenida']); ?>
+            <?php endif; ?>
         });
     </script>
 </body>
