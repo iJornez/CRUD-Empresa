@@ -16,7 +16,7 @@ if (!isset($correo)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="../../Assets/Css/AdminLogeado.css">
+    <link rel="stylesheet" href="../Assets/Css/AdminLogeado.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Document</title>
@@ -29,7 +29,7 @@ if (!isset($correo)) {
             <i class="fas fa-bars"></i>
         </label>
         <a href="#" class="enlace">
-            <img src="../../Assets/Images/Logo.png" alt="" class="logo">
+            <img src="../Assets/Images/Logo.png" alt="" class="logo">
         </a>
         <ul>
             <li><a class="active" href="AdminLogeado.php">Home</a></li>
@@ -94,7 +94,7 @@ if (!isset($correo)) {
                                         <label for="" class="blockquote">FOTO</label>
                                         <?php if ($txtfoto != "") { ?>
                                             <br>
-                                            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../../Assets/Images/<?php echo $txtfoto; ?>">
+                                            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../Assets/Images/<?php echo $txtfoto; ?>">
                                             <br>
                                             <br>
                                         <?php } ?>
@@ -128,7 +128,7 @@ if (!isset($correo)) {
                             <?php foreach ($listproductos as $producto) { ?>
                                 <tr>
                                     <td class="text-center"><?php echo $producto['id']; ?></td>
-                                    <td class="text-center"><img class="img-thumbnail" width="30px" src="../../Assets/Images/<?php echo $producto['foto']; ?>"></td>
+                                    <td class="text-center"><img class="img-thumbnail" width="30px" src="../Assets/Images/<?php echo $producto['foto']; ?>"></td>
                                     <td class="text-center"><?php echo $producto['nombre']; ?></td>
                                     <td class="text-center"><?php echo $producto['precio']; ?></td>
 

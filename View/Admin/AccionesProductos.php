@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_error', 1);
 require_once("../../Config/conexion.php");
 
 $txtid = isset($_POST['txtid']) ? $_POST['txtid'] : "";
@@ -11,7 +13,13 @@ $accionAgregar = "";
 $AccionModificar = $accionEliminar = $accionCancelar = "disabled";
 
 switch ($accion) {
+    case 'abrirRegistro':
+        $mostrarmodalRegistro = true;
+        break;
     case 'btnagregar':
+        $mostrarmodal = false;
+        $accionAgregar = "disabled";
+        $AccionModificar = $accionEliminar = $accionCancelar = "";
         $sentencia = $pdo->prepare("INSERT INTO productos (nombre, precio,foto) VALUES (:nombre, :precio, :foto)");
         $sentencia->bindParam(':nombre', $txtnombre);
         $sentencia->bindParam(':precio', $txtprecio);
@@ -19,9 +27,9 @@ switch ($accion) {
         if (isset($_FILES['txtfoto']['name']) && $_FILES['txtfoto']['tmp_name'] != "") {
             $fecha = new DateTime();
             $nombre_archivo = $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'];
-            move_uploaded_file($_FILES['txtfoto']['tmp_name'], "../../Assets/Images/" . $nombre_archivo);
+            move_uploaded_file($_FILES['txtfoto']['tmp_name'], "../Assets/Images/" . $nombre_archivo);
         }
-        
+
         $sentencia->bindParam(':foto', $nombre_archivo);
 
         try {
@@ -47,7 +55,8 @@ switch ($accion) {
         break;
 
     case 'btnmodificar':
-
+        error_reporting(E_ALL);
+        ini_set('display_error', 1);
         $sentencia = $pdo->prepare("UPDATE productos 
         SET nombre=:nombre, 
         precio=:precio WHERE id=:id");
@@ -59,14 +68,14 @@ switch ($accion) {
         $nombre_archivo = $txtfoto != "" ? $fecha->getTimestamp() . "_" . $_FILES['txtfoto']['name'] : "imagen.png";
         $tmpfoto = $_FILES['txtfoto']['tmp_name'];
         if ($tmpfoto != "") {
-            move_uploaded_file($tmpfoto, "../../Assets/Images/" . $nombre_archivo);
+            move_uploaded_file($tmpfoto, "../Assets/Images/" . $nombre_archivo);
             $sentencia = $pdo->prepare("SELECT foto FROM productos WHERE id=:id");
             $sentencia->bindParam(":id", $txtid);
             $sentencia->execute();
             $empleado = $sentencia->fetch(PDO::FETCH_ASSOC);
             if (isset($_FILES["txtfoto"])) {
-                if (file_exists("../../Assets/Images/" . $empleado["foto"])) {
-                    unlink("../../Assets/Images/" . $empleado["foto"]);
+                if (file_exists("../Assets/Images/" . $empleado["foto"])) {
+                    unlink("../Assets/Images/" . $empleado["foto"]);
                 }
             }
             $sentencia = $pdo->prepare("UPDATE productos SET foto=:foto WHERE id=:id");
@@ -98,8 +107,8 @@ switch ($accion) {
         $img_product = $sentencia->fetch(PDO::FETCH_ASSOC);
         print_r($img_product);
         if (isset($_POST["txtfoto"])) {
-            if (file_exists("../../Assets/Images/" . $img_product["foto"])) {
-                unlink("../../Assets/Images/" . $img_product["foto"]);
+            if (file_exists("../Assets/Images/" . $img_product["foto"])) {
+                unlink("../Assets/Images/" . $img_product["foto"]);
             }
         }
         $sentencia = $pdo->prepare("DELETE FROM productos WHERE id=:id");
@@ -118,6 +127,7 @@ switch ($accion) {
         $txtprecio = null;
         $txtfoto = null;
         $accion = null;
+        $mostrarmodal = false;
         break;
 }
 

@@ -13,10 +13,10 @@ $userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../Assets/Css/LoginUsuario.css">
-    <link rel="stylesheet" href="../../Assets/Css/Carrito.css">
+    <link rel="stylesheet" href="../Assets/Css/LoginUsuario.css">
+    <link rel="stylesheet" href="../Assets/Css/Carrito.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="../../Assets/Js/Carrito.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -27,7 +27,7 @@ $userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
 <body>
     <nav style="background-color: #000000;" class=" navbar navbar-expand-lg navbar-dark">
 
-        <a class="navbar-brand" href="HomeUsuario.php"><img src="../../Assets/Images/Logo.jpg" height="50px" width="50px" alt=""></a>
+        <a class="navbar-brand" href="HomeUsuario.php"><img src="../Assets/Images/Logo.jpg" height="50px" width="50px" alt=""></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -105,7 +105,7 @@ $userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
 
 
 
-
+    <script src="../Assets/Js/Carrito.js"></script>
     <script>
         $(document).ready(function() {
             if (!localStorage.getItem('modalShown')) {
@@ -114,6 +114,7 @@ $userLoggedIn = isset($_SESSION['correo']) ? 'true' : 'false';
             }
         });
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         const userLoggedIn = <?php echo $userLoggedIn; ?>;

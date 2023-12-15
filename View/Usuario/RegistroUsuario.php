@@ -30,10 +30,16 @@
     <br>
 
     <div class="form_group col-md-12">
+        <label for="" class="blockquote">CONTRASEÑA</label>
+        <input type="text" class="form-control" name="txtcorreo" id="txtcontrasena" value="<?php echo "$txtcontrasena"; ?>" require=""><br>
+    </div>
+    <br>
+
+    <div class="form_group col-md-12">
         <label for="" class="blockquote">FOTO</label>
         <?php if ($txtfoto != "") { ?>
             <br>
-            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../../Assets/Images/<?php echo $txtfoto; ?>">
+            <img class="img-thumbnail rounded mx-auto d-block" width="100px" src="../Assets/Images/<?php echo $txtfoto; ?>">
             <br>
             <br>
         <?php } ?>
